@@ -8,7 +8,7 @@ public:
     //花色
     enum CardSuit
     {
-        SUit_Begin,
+        Suit_Begin,
         Diamond,//方块
         Club,   //梅花
         Heart,  //红心
