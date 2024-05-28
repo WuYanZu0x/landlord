@@ -87,6 +87,7 @@ public:
 
 
 signals:
+    //发出叫地主的信号
     void notifyGrabLordBet(Player* player, int bet);
     void notifyPlayHand(Player* player, const Cards& card);
     void notifyPickCards(Player* player, const Cards& cards);

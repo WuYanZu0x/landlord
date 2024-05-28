@@ -6,6 +6,7 @@
 #include "userplayer.h"
 #include "cards.h"
 
+//记录玩家下注的信息
 struct BetRecord
 {
     BetRecord()
@@ -18,9 +19,9 @@ struct BetRecord
         bet = 0;
         times = 0;
     }
-    Player* player;
-    int bet;
-    int times;
+    Player* player;//下注的玩家
+    int bet;//下注的分数
+    int times;//第几个下注的玩家
 };
 
 class GameControl : public QObject
@@ -75,15 +76,19 @@ public:
     void becomeLord(Player *player, int bet);
     //清空所有玩家分数
     void clearPlayerScore();
+    //得到玩家下注的最大分数
     int getPlayerMaxBet();
 
+    //处理叫地主信号
     void onGrabBet(Player* player, int bet);
 
     void onPlayHand(Player *player, const Cards &card);
 
 signals:
+    //更改玩家的状态
     void playerStatusChanged(Player* player, PlayerStatus status);
-    void notifyGrabLordBet(Player* player, int bet, bool flag);
+    //通知玩家抢地主，该抢地主了，
+    void notifyGrabLordBet(Player* player, int bet, bool flag);//第三个参数代表是否为第一个抢地主的玩家
     void gameStatusChanged(GameStatus status);
     void notifyPlayHand(Player* player, const Cards& card);
     void pendingInfo(Player* player, const Cards& card);

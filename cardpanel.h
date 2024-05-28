@@ -11,7 +11,7 @@ class CardPanel : public QWidget
 public:
     explicit CardPanel(QWidget *parent = nullptr);
 
-    //设置及获取窗口的图片
+    //设置及获取窗口类的正面和背面图片
     void setImage(const QPixmap &front, const QPixmap &back);
     QPixmap getImage();
 
@@ -48,3 +48,4 @@ private:
     Card m_card;//窗口的卡的信息
     Player* m_owner = nullptr;//扑克牌的所有者
 };
+#endif

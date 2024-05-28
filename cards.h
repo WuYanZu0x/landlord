@@ -20,6 +20,7 @@ public:
     Cards& operator <<(const Card& card);
     Cards& operator <<(const Cards& cards);
 
+    //从cards中删除一些牌
     void remove(const Card& card);
     void remove(const Cards& cards);
     void remove(const QVector<Cards>& cards);
@@ -44,6 +45,7 @@ public:
     //随机抽牌
     Card takeRandomCard();
 
+    //类型转换
     CardList toCardList(SortType type = Desc);
 
     //打印所有的牌

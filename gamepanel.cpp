@@ -491,6 +491,7 @@ void GamePanel::onPlayerStatusChanged(Player *player, GameControl::PlayerStatus 
     case GameControl::ThinkingForCallLord:
         if(player == m_gameCtl->getUserPlayer())
         {
+            //根据前面下注的最高分数，选择显示哪些按钮
             ui->btnGroup->selectPanel(ButtonGroup::CallLord, m_gameCtl->getPlayerMaxBet());
         }
         break;
@@ -531,17 +532,18 @@ void GamePanel::onPlayerStatusChanged(Player *player, GameControl::PlayerStatus 
 void GamePanel::onGrabLordBet(Player *player, int bet, bool flag)
 {
     PlayerContext context = m_contextMap[player];
+    //bet为0，显示不叫地主的图片
     if(bet == 0)
     {
         context.info->setPixmap(QPixmap(":/images/buqinag.png"));
     }
     else
     {
-        if(flag)
+        if(flag)//flag为1，说明为第一次叫地主，图片为叫地主
         {
             context.info->setPixmap(QPixmap(":/images/jiaodizhu.png"));
         }
-        else
+        else//flag不为1，说明为第一次叫地主，图片为抢地主
         {
             context.info->setPixmap(QPixmap(":/images/qiangdizhu.png"));
         }
@@ -549,6 +551,7 @@ void GamePanel::onGrabLordBet(Player *player, int bet, bool flag)
     }
     context.info->show();
 
+    //显示和播放叫地主的分数
     m_bgm->playerRobLordMusic(bet, (BGMControl::RoleSex)player->getSex(), flag);
 }
 
